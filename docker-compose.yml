@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  web:
+    image: python:3.10.2-slim
+    build:
+     context: .
+    volumes:
+    - ./app/:/app
+    stop_signal: SIGINT
+    secrets:
+      - mongodb_username
+      - mongodb_password
+    environment:
+    - MONGO_INITDB_ROOT_USERNAME_FILE=/run/secrets/mongodb_username
+    - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongodb_password
+    depends_on: 
+    - mongodb
+    networks:
+    - network
+
+  mongodb:
+    image: mongo:5.0
+    secrets:
+      - mongodb_username
+      - mongodb_password
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME_FILE=/run/secrets/mongodb_username
+      - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongodb_password
+    volumes:
+    - mongodb:/data/db
+    networks:
+    - network
+
+  caddy:
+    image: caddy:2.4.6
+    ports:
+    # - 80:80
+    # - 443:443
+    - 5000:5000
+    volumes:
+    - $PWD/Caddyfile:/etc/caddy/Caddyfile
+    - caddy:/data
+    networks:
+    - network
+
+secrets:
+  mongodb_username:
+    file: ./mongodb_username.secret
+  mongodb_password:
+    file: ./mongodb_password.secret
+
+volumes:
+  mongodb:
+    external: true
+  caddy:
+    external: true
+
+networks:
+  network:
+    internal: false
