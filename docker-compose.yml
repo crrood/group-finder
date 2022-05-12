@@ -4,7 +4,7 @@ services:
   web:
     image: python:3.10.2-slim
     build:
-     context: .
+      context: ./docker
     volumes:
     - ./app/:/app
     stop_signal: SIGINT
@@ -39,16 +39,16 @@ services:
     # - 443:443
     - 5000:5000
     volumes:
-    - $PWD/Caddyfile:/etc/caddy/Caddyfile
+    - ./docker/Caddyfile:/etc/caddy/Caddyfile
     - caddy:/data
     networks:
     - network
 
 secrets:
   mongodb_username:
-    file: ./mongodb_username.secret
+    file: ./docker/mongodb_username.secret
   mongodb_password:
-    file: ./mongodb_password.secret
+    file: ./docker/mongodb_password.secret
 
 volumes:
   mongodb:

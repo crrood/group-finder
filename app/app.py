@@ -1,8 +1,10 @@
-import os
 import logging
+import os
+
 from bson import json_util
-from flask import (Flask, make_response, render_template, request)
-from flask_restful import Resource, Api
+from flask import Flask, make_response, render_template, request
+from flask_restful import Api, Resource
+
 import db
 
 app = Flask(__name__)
