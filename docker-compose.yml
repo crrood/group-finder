@@ -4,9 +4,9 @@ services:
   web:
     image: python:3.10.2-slim
     build:
-      context: ./docker
+      context: ./server
     volumes:
-    - ./app/:/app
+    - ./server/:/server
     stop_signal: SIGINT
     secrets:
       - mongodb_username
@@ -39,7 +39,7 @@ services:
     # - 443:443
     - 5000:5000
     volumes:
-    - ./docker/Caddyfile:/etc/caddy/Caddyfile
+    - ./Caddyfile:/etc/caddy/Caddyfile
     - caddy:/data
     networks:
     - network
