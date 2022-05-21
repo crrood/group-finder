@@ -5,10 +5,8 @@ DATABASE = 'groupFinder'
 
 # connect to DB
 def get_client():
-  mongodb_username = open(
-      os.environ['MONGO_INITDB_ROOT_USERNAME_FILE'], "r").read()
-  mongodb_password = open(
-      os.environ['MONGO_INITDB_ROOT_PASSWORD_FILE'], "r").read()
+  mongodb_username = os.environ.get('MONGO_INITDB_ROOT_USERNAME')
+  mongodb_password = os.environ.get('MONGO_INITDB_ROOT_PASSWORD')
   mongodb_connstring = f'mongodb://{mongodb_username}:{mongodb_password}@mongodb'
   client = MongoClient(mongodb_connstring)
   return client
