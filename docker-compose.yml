@@ -32,12 +32,6 @@ services:
     networks:
     - network
 
-secrets:
-  mongodb_username:
-    file: ./docker/mongodb_username.secret
-  mongodb_password:
-    file: ./docker/mongodb_password.secret
-
 volumes:
   mongodb:
     external: true
