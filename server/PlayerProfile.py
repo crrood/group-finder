@@ -7,7 +7,12 @@ import db
 
 class PlayerProfile(Resource):
   def get(self, player_profile_id):
-    return {'id': player_profile_id}
+    data = {
+      'id': player_profile_id,
+      'name': 'Thumper Strongbottom Jr',
+      'thumbnail': 'https://i.pinimg.com/originals/7b/f4/ae/7bf4ae7ccd11422ccb2a8b4017198b65.png'
+    }
+    return data
   
   def patch(self, player_profile_id):
     player_profile = {"id": player_profile_id}
