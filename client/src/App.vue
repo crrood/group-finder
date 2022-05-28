@@ -1,10 +1,12 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/playerProfilePreview">PlayerProfilePreview</router-link>
-  </nav>
+  <NavbarTop />
   <router-view/>
 </template>
+
+<script setup>
+import NavbarTop from "@/components/NavbarTop.vue"
+
+</script>
 
 <style>
 #app {
