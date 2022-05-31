@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '@/components/LandingPage.vue'
 import PlayerProfilePreview from '@/components/PlayerProfilePreview.vue'
+import PlayerProfile from '@/components/PlayerProfile.vue'
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/playerProfilePreview',
     name: 'PlayerProfilePreview',
     component: PlayerProfilePreview
+  },
+  {
+    path: '/playerProfile',
+    name: 'PlayerProfile',
+    component: PlayerProfile
   }
 ]
 

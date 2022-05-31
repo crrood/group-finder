@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-secondary" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <router-link class="navbar-item" to="/">
         <img src="https://placekitten.com/112/28" width="112" height="28">
@@ -14,13 +14,13 @@
 
     <div id="navbarTop" class="navbar-menu">
       <div class="navbar-start">
-        <router-link class="navbar-item is-secondary" to="/playerProfilePreview">
-          Characters
+        <router-link class="navbar-item is-secondary" to="/playerProfile">
+          PlayerProfile
         </router-link>
 
-        <a class="navbar-item">
-          Games
-        </a>
+        <router-link class="navbar-item" to="/playerProfilePreview">
+          PlayerProfilePreview
+        </router-link>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
@@ -29,17 +29,13 @@
 
           <div class="navbar-dropdown">
             <a class="navbar-item">
-              About
+              Some
             </a>
             <a class="navbar-item">
-              Jobs
+              Other
             </a>
             <a class="navbar-item">
-              Contact
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
+              Stuff
             </a>
           </div>
         </div>
