@@ -5,7 +5,7 @@ import PlayerProfile from './components/PlayerProfile.vue'
 const routes = [
   {
     path: '/',
-    name: 'landingPage',
+    name: 'LandingPage',
     component: LandingPage
   },
   {

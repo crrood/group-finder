@@ -18,7 +18,6 @@ onMounted(() => {
   const path = 'http://localhost:5000/';
   axios.get(path)
     .then(res => {
-      console.log(res.data);
       state.response = res.data;
     })
     .catch(error => {

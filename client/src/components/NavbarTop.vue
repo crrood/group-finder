@@ -16,13 +16,13 @@
       <button class="btn-primary">
         Sign up
       </button>
-      <button>
-        Log in
-      </button>
+      <LoginButton />
     </div>
   </nav>
 </template>
 
 <script setup>
+
+import LoginButton from './LoginButton.vue'
 
 </script>
