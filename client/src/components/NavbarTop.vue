@@ -1,58 +1,24 @@
 <template>
-  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <router-link class="navbar-item" to="/">
-        <img src="https://placekitten.com/112/28" width="112" height="28">
+  <nav class="grid grid-cols-12 gap-4 p-2 bg-slate-500 font-rise-of-kingdom text-white" role="navigation" aria-label="main navigation">
+    <div class="col-span-1">
+      <router-link class="" to="/">
+        <img class="w-24 h-24" src="https://placekitten.com/96/96">
       </router-link>
-
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
     </div>
 
-    <div id="navbarTop" class="navbar-menu">
-      <div class="navbar-start">
-        <router-link class="navbar-item is-secondary" to="/playerProfile">
-          PlayerProfile
-        </router-link>
+    <div class="flex col-span-5 justify-start place-items-center gap-8 text-2xl">
+      <router-link class="" to="/playerProfile">
+        PlayerProfile
+      </router-link>
+    </div>
 
-        <router-link class="navbar-item" to="/playerProfilePreview">
-          PlayerProfilePreview
-        </router-link>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
-          </a>
-
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              Some
-            </a>
-            <a class="navbar-item">
-              Other
-            </a>
-            <a class="navbar-item">
-              Stuff
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light">
-              Log in
-            </a>
-          </div>
-        </div>
-      </div>
+    <div class="flex col-span-5 justify-end place-items-center gap-4 mr-12 text-lg">
+      <button class="btn-primary">
+        Sign up
+      </button>
+      <button>
+        Log in
+      </button>
     </div>
   </nav>
 </template>
@@ -60,8 +26,3 @@
 <script setup>
 
 </script>
-
-<style lang="scss">
-
-
-</style>

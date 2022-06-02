@@ -1,15 +1,15 @@
 <template>
-  <div class="tile is-ancestor">
-    <div class="tile is-parent">
-      <div class="tile is-child is-3 is-warning notification">
-        <img :src='state.thumbnail'>
-      </div>
-      <div class="tile is-child is-info notification">
-        <p class="title">{{ state.name }}</p>
-      </div>
+  <div class="flex">
+    <div class="flex basis-4/12 justify-center h-96 bg-gray-300">
+      <img class="rounded-full max-w-full" :src='state.profilePicture'>
+    </div>
+    <div class="flex basis-8/12 justify-evenly bg-gray-100">
+      <p class="font-beyond-wonderland text-7xl">{{ state.name }}</p>
     </div>
   </div>
-  <button @click='getProfile'>Thump it!</button>
+  <div class="flex justify-center">
+    <button class="btn-primary" @click='getProfile'>Thump it!</button>
+  </div>
 </template>
 
 <script setup>
@@ -20,7 +20,7 @@ import { reactive } from 'vue';
 const state = reactive({
   id: 1,
   name: 'Placeholder name',
-  thumbnail: 'https://www.iana.org/_img/2022/iana-logo-header.svg'
+  profilePicture: 'https://placekitten.com/250/384'
 });
 
 // methods
@@ -30,7 +30,7 @@ function getProfile() {
     .then(res => {
       console.log(res.data);
       state.name = res.data.name;
-      state.thumbnail = res.data.thumbnail;
+      state.profilePicture = res.data.thumbnail;
     })
     .catch(error => {
       console.error(error);

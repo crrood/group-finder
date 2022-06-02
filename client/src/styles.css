@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GENERAL STYLING */
+a {
+  @apply font-bold hover:text-slate-200;
+}
+
+/* CUSTOM CLASSES */
+@layer components {
+  .btn-primary {
+    @apply bg-purple-600 hover:bg-purple-700 px-4 py-3 rounded-full text-white font-rise-of-kingdom font-bold;
+  }
+}
+
+/* FONTS */
+@font-face {
+  font-family: "Beyond Wonderland";
+  src: url('assets/fonts/BeyondWonderland.ttf');
+}
+
+.font-beyond-wonderland {
+  font-family: "Beyond Wonderland";
+}
+
+@font-face {
+  font-family: "Black Chancery";
+  src: url('assets/fonts/BlackChancery.ttf');
+}
+
+.font-black-chancery {
+  font-family: "Black Chancery";
+}
+
+@font-face {
+  font-family: "Rise of Kingdom";
+  src: url('assets/fonts/RiseOfKingdom.ttf');
+}
+
+.font-rise-of-kingdom {
+  font-family: "Rise of Kingdom";
+  letter-spacing: 0.025em;
+}
