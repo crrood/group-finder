@@ -1,11 +1,20 @@
 <template>
   <div>
-    <button v-if="!state.isAuthenticated" @click="login">
-      Log in
-    </button>
-    <button v-else @click="logout">
-      Log out
-    </button>
+    <div v-if="!state.isAuthenticated">
+      <button class="btn-primary" @click="login">
+        Log in
+      </button>
+    </div>
+    <div v-else class="flex gap-4">
+      <button class="btn-warning" @click="logout">
+        Log out
+      </button>
+      <router-link to="UserProfile">
+        <button class="btn-primary">
+          User Profile
+        </button>
+      </router-link>
+    </div>
   </div>
 </template>
 
