@@ -5,11 +5,14 @@ from flask import Flask, make_response, render_template, request
 from flask_restful import Api
 from flask_cors import CORS
 
+from validator import Auth0Wrapper
+
 import db
 from PlayerProfile import PlayerProfile, PlayerProfileList
 
 app = Flask(__name__)
 api = Api(app)
+auth = Auth0Wrapper()
 
 # TODO restrict resources to front-end container, once it exists
 CORS(app)
@@ -27,6 +30,7 @@ api.add_resource(PlayerProfile, '/playerProfiles/<int:player_profile_id>')
 
 # nuke all DB entries
 @app.route('/resetDB')
+@auth.require_auth(None)
 def reset_db():
   return db.reset()
 

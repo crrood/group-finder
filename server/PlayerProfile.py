@@ -2,10 +2,14 @@ from bson import json_util
 from flask import make_response
 from flask_restful import Resource
 
+from validator import Auth0Wrapper
 import db
 
+auth = Auth0Wrapper()
 
 class PlayerProfile(Resource):
+  # NOTE authentication is disabled for testing
+  # @auth.require_auth(None)
   def get(self, player_profile_id):
     data = {
       'id': player_profile_id,
@@ -14,6 +18,8 @@ class PlayerProfile(Resource):
     }
     return data
   
+  # NOTE authentication is disabled for testing
+  # @auth.require_auth(None)
   def patch(self, player_profile_id):
     player_profile = {"id": player_profile_id}
     client = db.get_collection('playerProfiles')
