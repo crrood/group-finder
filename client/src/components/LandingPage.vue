@@ -15,7 +15,7 @@ const state = reactive({
 
 // methods
 onMounted(() => {
-  const path = 'http://localhost:5000/';
+  const path = 'http://localhost/';
   axios.get(path)
     .then(res => {
       state.response = res.data;

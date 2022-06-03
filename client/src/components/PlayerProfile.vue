@@ -25,7 +25,7 @@ const state = reactive({
 
 // methods
 function getProfile() {
-  const path = 'http://localhost:5000/playerProfiles/' + state.id;
+  const path = 'http://localhost/playerProfiles/' + state.id;
   axios.get(path)
     .then(res => {
       console.log(res.data);

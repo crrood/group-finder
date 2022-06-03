@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   server:
-    image: python:3.10.2-slim
+    image: python:3.10-slim
     build:
       context: ./server
     env_file:
@@ -25,9 +25,8 @@ services:
   caddy:
     image: caddy:2.4.6
     ports:
-    # - 80:80
-    # - 443:443
-    - 5000:5000
+    - 443:443
+    - 80:80
     volumes:
     - ./Caddyfile:/etc/caddy/Caddyfile
     - caddy:/data

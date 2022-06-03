@@ -6,7 +6,10 @@ import { createAuth0 } from '@auth0/auth0-vue'
 
 const app = createApp(App)
 
+// Vuejs router
 app.use(router)
+
+// Auth0 user authentication
 app.use(
   createAuth0({
     domain: "dev-w5wu3a3y.us.auth0.com",
@@ -15,4 +18,5 @@ app.use(
   })
 );
 
+// mount app to index.html
 app.mount('#app')
