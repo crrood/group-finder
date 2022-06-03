@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router.js'
 import './styles.css'
 import { createAuth0 } from '@auth0/auth0-vue'
+import axios from 'axios'
 
 const app = createApp(App)
 
@@ -17,6 +18,12 @@ app.use(
     redirect_uri: window.location.origin
   })
 );
+
+// global variables
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost'
+})
+app.provide('axios', axiosInstance)
 
 // mount app to index.html
 app.mount('#app')

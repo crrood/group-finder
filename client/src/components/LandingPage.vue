@@ -5,8 +5,7 @@
 </template>
 
 <script setup>
-import axios from 'axios';
-import { onMounted, reactive } from 'vue';
+import { inject, onMounted, reactive } from 'vue';
 
 // reactive state
 const state = reactive({
@@ -14,8 +13,9 @@ const state = reactive({
 });
 
 // methods
+const axios = inject('axios');
 onMounted(() => {
-  const path = 'http://localhost/';
+  const path = '/';
   axios.get(path)
     .then(res => {
       state.response = res.data;

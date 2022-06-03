@@ -13,8 +13,7 @@
 </template>
 
 <script setup>
-import axios from 'axios';
-import { reactive } from 'vue';
+import { inject, reactive } from 'vue';
 
 // reactive state
 const state = reactive({
@@ -24,8 +23,9 @@ const state = reactive({
 });
 
 // methods
+const axios = inject('axios');
 function getProfile() {
-  const path = 'http://localhost/playerProfiles/' + state.id;
+  const path = '/playerProfiles/' + state.id;
   axios.get(path)
     .then(res => {
       console.log(res.data);
