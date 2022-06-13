@@ -1,10 +1,16 @@
 <template>
-  <div class="flex">
-    <div class="flex basis-4/12 justify-center h-96 bg-gray-300">
+  <div class="grid grid-cols-12">
+    <div class="col-span-4 flex justify-center h-96 bg-gray-300">
       <img class="rounded-full max-w-full" :src='state.character.photo.fullsize'>
     </div>
-    <div class="flex basis-8/12 justify-evenly bg-gray-100">
-      <p class="font-beyond-wonderland text-7xl">{{ state.character.name }}</p>
+    <div class="col-span-8 grid grid-cols-12 bg-gray-100">
+      <p class="col-span-12 font-beyond-wonderland text-center text-7xl">{{ state.character.name }}</p>
+      <div class="col-span-12 grid grid-cols-12 ml-3">
+        <span class="col-span-3">Race: {{ state.character.race }}</span>
+        <span class="col-span-3">Gender: {{ state.character.gender }}</span>
+        <span class="col-span-3">Height: {{ state.character.height }}</span>
+        <span class="col-span-3">Weight: {{ state.character.weight }}</span>
+      </div>
     </div>
   </div>
   <div class="flex justify-center">
