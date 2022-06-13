@@ -23,14 +23,18 @@ SAMPLE_DATA = {
       "question": {}
     }
   ],
+  "details": {
+    "race": "Halfing",
+    "class": "Warlock",
+    "background": "Farmer",
+    "level": 7,
+    "gender": "Male",
+    "height": "3ft 7in",
+    "weight": "8 stone"
+  },
   "name": "Thumper Strongbottom",
-  "race": "Halfing",
-  "gender": "Male",
-  "height": "3ft 7in",
-  "weight": "8 stone",
-  "background": "Farmer",
-  "description": "A folksy little man with a dark side",
-  "personalityTraits": "Has an earthy wisdom, until his un-eartly patron comes out",
+  "appearance": "A folksy little man with a dark side",
+  "personality": "Has an earthy wisdom, until his un-earthly patron comes out",
   "ideals": "A simple life is best",
   "bonds": "His land and family",
   "flaws": "Ignorant to the ways of the world",

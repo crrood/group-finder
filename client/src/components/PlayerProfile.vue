@@ -1,15 +1,17 @@
 <template>
   <div class="grid grid-cols-12">
-    <div class="col-span-4 flex justify-center h-96 bg-gray-300">
+    <div id="characterPhoto" class="col-span-4 flex justify-center h-96 bg-gray-300">
       <img class="rounded-full max-w-full" :src='state.character.photo.fullsize'>
     </div>
-    <div class="col-span-8 grid grid-cols-12 bg-gray-100">
-      <p class="col-span-12 font-beyond-wonderland text-center text-7xl">{{ state.character.name }}</p>
-      <div class="col-span-12 grid grid-cols-12 ml-3">
-        <span class="col-span-3">Race: {{ state.character.race }}</span>
-        <span class="col-span-3">Gender: {{ state.character.gender }}</span>
-        <span class="col-span-3">Height: {{ state.character.height }}</span>
-        <span class="col-span-3">Weight: {{ state.character.weight }}</span>
+    <div id="characterData" class="col-span-8 grid grid-cols-12 grid-rows-6 bg-gray-100">
+      <p class="col-span-12 row-span-2 font-beyond-wonderland text-center text-7xl bg-gray-400">{{
+        state.character.name}}</p>
+      <div id="characterDetails" class="col-span-12 row-span-4 flex flex-wrap gap-x-12 justify-evenly p-5">
+        <label v-for="detail in Object.keys(state.character.details)" :key="detail">
+          <span class="">{{ capitalize(detail) }}: </span>
+          <input type="text" class="border-0 border-b-2 border-gray-200 focus:border-black focus:ring-0"
+            v-model="state.character.details[detail]">
+        </label>
       </div>
     </div>
   </div>
@@ -45,6 +47,10 @@ function getCharacter() {
     .catch(error => {
       console.error(error);
     })
+}
+
+function capitalize(str) {
+  return str[0].toUpperCase() + str.substring(1);
 }
 
 // lifecycle hooks
