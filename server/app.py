@@ -1,14 +1,14 @@
 import logging
 import os
 
-from flask import Flask, make_response, render_template, request
+from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
 
 from validator import Auth0Wrapper
 
 import db
-from PlayerProfile import PlayerProfile, PlayerProfileList
+from PlayerCharacter import PlayerCharacter, PlayerCharacterList
 
 app = Flask(__name__)
 api = Api(app)
@@ -25,8 +25,8 @@ log = logging.getLogger(__name__)
 def landing_page():
   return "It's a landing page, alright."
 
-api.add_resource(PlayerProfileList, '/playerProfiles')
-api.add_resource(PlayerProfile, '/playerProfiles/<int:player_profile_id>')
+api.add_resource(PlayerCharacterList, '/playerCharacters')
+api.add_resource(PlayerCharacter, '/playerCharacters/<int:player_character_id>')
 
 # nuke all DB entries
 @app.route('/resetDB')
