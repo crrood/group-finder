@@ -32,6 +32,14 @@ SAMPLE_DATA = {
     "height": "3ft 7in",
     "weight": "8 stone"
   },
+  "stats": {
+    "strength": 12,
+    "dexterity": 8,
+    "constitution": 13,
+    "intelligence": 10,
+    "wisdom": 15,
+    "charisma": 14
+  },
   "name": "Thumper Strongbottom",
   "appearance": "A folksy little man with a dark side",
   "personality": "Has an earthy wisdom, until his un-earthly patron comes out",
