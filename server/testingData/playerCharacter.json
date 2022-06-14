@@ -30,16 +30,16 @@
     "wisdom": 15,
     "charisma": 14
   },
+  "personality": {
+    "ideals": "A simple life is best",
+    "bonds": "His land and family",
+    "flaws": "Ignorant to the ways of the world",
+    "likes": "Carrots, onions, eternal darkness",
+    "dislikes": "Poorly tilled soil",
+    "catchphrase": "Well ain't that a turnip and a half!"
+  },
   "name": "Thumper Strongbottom",
-  "appearance": "A folksy little man with a dark side",
-  "personality": "Has an earthy wisdom, until his un-earthly patron comes out",
-  "ideals": "A simple life is best",
-  "bonds": "His land and family",
-  "flaws": "Ignorant to the ways of the world",
   "allies": "His fellow townspeople",
   "enemies": "Gophers",
-  "likes": "Carrots, onions, eternal darkness",
-  "dislikes": "Poorly tilled soil",
-  "catchPhrases": "Well ain't that a turnip and a half!",
   "religion": "The eternal dark one"
 }
