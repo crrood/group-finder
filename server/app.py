@@ -26,12 +26,12 @@ def landing_page():
   return "It's a landing page, alright."
 
 api.add_resource(PlayerCharacterList, '/playerCharacters')
-api.add_resource(PlayerCharacter, '/playerCharacters/<int:player_character_id>')
+api.add_resource(PlayerCharacter, '/playerCharacters/<string:player_character_id>')
 
 # nuke all DB entries
 @app.route('/resetDB')
-@auth.require_auth(None)
 def reset_db():
+  log.warn("resetting DB")
   return db.reset()
 
 if __name__ == '__main__':

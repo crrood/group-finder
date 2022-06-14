@@ -1,5 +1,7 @@
+import json
 import os
 from pymongo import MongoClient
+from bson import ObjectId
 
 DATABASE = 'groupFinder'
 
@@ -23,4 +25,16 @@ def get_collection(collection):
 def reset():
   client = get_client()
   client.drop_database(DATABASE)
-  return 'db reset'
+  
+  # populate testing data
+  with open('testingData/playerCharacter.json') as f:
+    sample_pc_data = json.load(f)
+
+  client = get_database()
+  result = client['playerCharacters'].insert_one(sample_pc_data)
+
+  return f'db reset - test PC id = {result.inserted_id}'
+
+# utility methods
+def convert_to_oid(id):
+  return ObjectId(id)

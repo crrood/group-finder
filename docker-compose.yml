@@ -21,6 +21,8 @@ services:
     - mongodb:/data/db
     networks:
     - network
+    env_file:
+    - .env
 
   caddy:
     image: caddy:2.4.6

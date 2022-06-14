@@ -11,23 +11,25 @@
       <div class="col-span-12 row-span-4 flex flex-wrap gap-x-12 justify-evenly p-5">
         <label v-for="detail in Object.keys(state.character.details)" :key="detail">
           <span class="">{{ capitalize(detail) }}: </span>
-          <input type="text" class="border-0 border-b-2 border-gray-200 focus:border-black focus:ring-0"
-            size=15 v-model="state.character.details[detail]">
+          <input type="text" class="border-0 border-b-2 border-gray-200 focus:border-black focus:ring-0" size=15
+            v-model="state.character.details[detail]">
         </label>
       </div>
       <!-- Stats -->
     </div>
     <div class="col-span-12 flex justify-evenly gap-x-12 bg-blue-100">
-      <span v-for="(value, name) in state.character.stats" class="border-2 border-black text-center bg-blue-200">
+      <span v-for="(value, name) in state.character.stats" class="border border-black text-center bg-blue-200">
         <input type="text" class="border-0 border-b-2 border-gray-200 text-center focus:border-black focus:ring-0"
           max-length=2 size=2 v-model="state.character.stats[name]">
-          <hr>
-        {{ name }}
+        <hr>
+        {{ capitalize(name) }}
       </span>
     </div>
   </div>
-  <div class="flex justify-center">
-    <button class="btn-primary" @click='getCharacter'>Thump it!</button>
+  <!-- Save / load -->
+  <div class="flex justify-center py-2 gap-x-4">
+    <button class="btn-primary" @click='getCharacter'>Thump in!</button>
+    <button class="btn-primary" @click='saveCharacter'>Thump out!</button>
   </div>
 </template>
 
@@ -36,7 +38,7 @@ import { inject, reactive } from 'vue';
 
 // reactive state
 const state = reactive({
-  id: 1,
+  id: "62a820b4b1863f5f3b636119", // manually set after /resetDB
   // placeholder data while page is loading
   character: {
     name: 'Placeholder name',
@@ -70,7 +72,18 @@ function getCharacter() {
   axios.get(path)
     .then(res => {
       console.log(res.data);
-      state.character = res.data;
+      state.character = JSON.parse(res.data);
+    })
+    .catch(error => {
+      console.error(error);
+    })
+}
+
+function saveCharacter() {
+  const path = '/playerCharacters/' + state.id;
+  axios.put(path, state.character)
+    .then(res => {
+      console.log(res.data);
     })
     .catch(error => {
       console.error(error);

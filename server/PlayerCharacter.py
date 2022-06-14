@@ -1,73 +1,57 @@
-from bson import json_util
-from flask import make_response
+import logging
+from bson import json_util, ObjectId
+from flask import make_response, request
 from flask_restful import Resource
 
 from validator import Auth0Wrapper
 import db
 
 auth = Auth0Wrapper()
-
-SAMPLE_DATA = {
-  "id": 0,
-  "userId": 0,
-  "photo": {
-    "id": 0,
-    "fullsize": "https://i.pinimg.com/originals/7b/f4/ae/7bf4ae7ccd11422ccb2a8b4017198b65.png",
-    "thumbnail": "https://placekitten.com/100/100"
-  },
-  "answers": [
-    {
-      "id": 0,
-      "text": "I would never consider such a thing!",
-      "playerProfileId": 0,
-      "question": {}
-    }
-  ],
-  "details": {
-    "race": "Halfing",
-    "class": "Warlock",
-    "background": "Farmer",
-    "level": 7,
-    "gender": "Male",
-    "height": "3ft 7in",
-    "weight": "8 stone"
-  },
-  "stats": {
-    "strength": 12,
-    "dexterity": 8,
-    "constitution": 13,
-    "intelligence": 10,
-    "wisdom": 15,
-    "charisma": 14
-  },
-  "name": "Thumper Strongbottom",
-  "appearance": "A folksy little man with a dark side",
-  "personality": "Has an earthy wisdom, until his un-earthly patron comes out",
-  "ideals": "A simple life is best",
-  "bonds": "His land and family",
-  "flaws": "Ignorant to the ways of the world",
-  "allies": "His fellow townspeople",
-  "enemies": "Gophers",
-  "likes": "Carrots, onions, eternal darkness",
-  "dislikes": "Poorly tilled soil",
-  "catchPhrases": "Well ain't that a turnip and a half!",
-  "religion": "The eternal dark one"
-}
+log = logging.getLogger(__name__)
 
 class PlayerCharacter(Resource):
   # NOTE authentication is disabled for testing
   # @auth.require_auth(None)
   def get(self, player_character_id):
-    data = SAMPLE_DATA
-    return data
+    collection = db.get_collection('playerCharacters')
+    try:
+      object_id = db.convert_to_oid(player_character_id)
+    except:
+      return f'Could not convert {player_character_id} to ObjectId', 422
+
+    data = collection.find_one({'_id': object_id})
+
+    if data != None:
+      log.info(json_util.dumps(data))
+      return json_util.dumps(data), 200
+    else:
+      return f'playerCharacter with id {player_character_id} not found', 404
   
   # NOTE authentication is disabled for testing
   # @auth.require_auth(None)
-  def patch(self, player_character_id):
-    player_character = {"id": player_character_id}
+  def put(self, player_character_id):
+    player_character = request.get_json()
+    
+    # remove immutable _id from incoming data
+    player_character.pop('_id', None)
+
+    # convert id to ObjectId
+    try:
+      object_id = db.convert_to_oid(player_character_id)
+    except:
+      return f'Could not convert {player_character_id} to ObjectId', 422
+    
     client = db.get_collection('playerCharacters')
-    client.insert_one(player_character)
-    return "done", 201
+    result = client.replace_one(
+        {'_id': object_id}, player_character, upsert=True)
+
+    if result.matched_count > 0:
+      response = 'updated'
+    elif result.upserted_id != None:
+      response = 'inserted'
+    else:
+      response = 'something weird happened...'
+    return response, 200
 
 class PlayerCharacterList(Resource):
   def get(self):
