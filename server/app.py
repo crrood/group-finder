@@ -18,7 +18,6 @@ auth = Auth0Wrapper()
 CORS(app)
 
 logging.basicConfig(level=os.environ.get('LOGLEVEL', 'INFO'))
-log = logging.getLogger(__name__)
 
 # landing page
 @app.route('/', methods=['GET'])
@@ -31,7 +30,7 @@ api.add_resource(PlayerCharacter, '/playerCharacters/<string:player_character_id
 # nuke all DB entries
 @app.route('/resetDB')
 def reset_db():
-  log.warn("resetting DB")
+  logging.warn("resetting DB")
   return db.reset()
 
 if __name__ == '__main__':
