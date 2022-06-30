@@ -5,10 +5,10 @@ from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
 
-from validator import Auth0Wrapper
+from utils.validator import Auth0Wrapper
 
-import db
-from PlayerCharacter import PlayerCharacter, PlayerCharacterList
+import utils.db as db
+from models.PlayerCharacter import PlayerCharacter, PlayerCharacterList
 
 app = Flask(__name__)
 api = Api(app)

@@ -48,7 +48,7 @@ import { inject, reactive } from 'vue';
 
 // reactive state
 const state = reactive({
-  id: "62a8cd5ab05e4f23a07d2760", // manually set after /resetDB
+  id: "62bdf12a887b966724d40244", // manually set after /resetDB
   // placeholder data while page is loading
   character: {
     name: 'Placeholder name',

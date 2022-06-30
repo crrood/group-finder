@@ -3,8 +3,8 @@ from bson import json_util, ObjectId
 from flask import make_response, request
 from flask_restful import Resource
 
-from validator import Auth0Wrapper
-import db
+from utils.validator import Auth0Wrapper
+import utils.db as db
 
 auth = Auth0Wrapper()
 log = logging.getLogger(__name__)

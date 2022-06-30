@@ -27,7 +27,7 @@ def reset():
   client.drop_database(DATABASE)
   
   # populate testing data
-  with open('testingData/playerCharacter.json') as f:
+  with open('utils/testData/playerCharacter.json') as f:
     sample_pc_data = json.load(f)
 
   client = get_database()
