@@ -6,14 +6,9 @@
       </button>
     </div>
     <div v-else class="flex gap-4">
-      <button class="btn-warning" @click="logout">
+      <button class="btn-primary" @click="logout">
         Log out
       </button>
-      <router-link to="UserProfile">
-        <button class="btn-primary">
-          User Profile
-        </button>
-      </router-link>
     </div>
   </div>
 </template>
