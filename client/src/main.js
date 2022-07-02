@@ -13,8 +13,8 @@ app.use(router)
 // Auth0 user authentication
 app.use(
   createAuth0({
-    domain: "dev-w5wu3a3y.us.auth0.com",
-    client_id: "MFMZf4OTOtI5BybWD7AsJeNtIXoK5U7L",
+    domain: import.meta.env['VITE_AUTH0_DOMAIN'],
+    client_id: import.meta.env['VITE_AUTH0_CLIENT_ID'],
     redirect_uri: window.location.origin
   })
 );

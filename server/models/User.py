@@ -1,5 +1,5 @@
 import logging
-from flask import make_response, request
+from flask import request
 from flask_restful import Resource
 
 from utils.validator import Auth0Wrapper

@@ -1,6 +1,6 @@
 import logging
 from bson import json_util
-from flask import make_response, request
+from flask import request
 from flask_restful import Resource
 
 from utils.validator import Auth0Wrapper
@@ -30,4 +30,4 @@ class PlayerCharacterList(Resource):
     for result in results:
       result_string = result_string + json_util.dumps(result) + '<hr>'
 
-    return make_response(result_string, 200)
+    return result_string, 200
