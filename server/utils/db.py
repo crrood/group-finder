@@ -3,7 +3,7 @@ import logging
 import os
 from pymongo import MongoClient
 from bson import json_util, ObjectId
-from flask import Response, make_response
+from flask import Response, jsonify, make_response
 
 DATABASE = 'groupFinder'
 
@@ -31,7 +31,7 @@ def query_collection(collection: str, page_number: int) -> Response:
   page_number (int): Offset to query from, 0-indexed
 
   Returns:
-  (Response): Body is dict of format {id: item}
+  (Response): Body is an array of JSON documents
   """
   client = get_collection(collection)
 
@@ -39,13 +39,11 @@ def query_collection(collection: str, page_number: int) -> Response:
   offset = page_number * items_per_page
   results = client.find(limit=10, skip=offset)
 
-  result_dict = {}
+  result_array = []
   for result in results:
-    logging.info(result)
-    result_dict[str(result['_id'])] = json.loads(json_util.dumps(result))
-    logging.info(result_dict)
+    result_array.append(json.loads(json_util.dumps(result)))
 
-  return make_response(result_dict, 200)
+  return make_response(jsonify(result_array), 200)
 
 def get_document_by_id(collection: str, id: str) -> Response:
   """Query a document from the database using an _id value
