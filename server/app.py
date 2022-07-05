@@ -9,6 +9,7 @@ from utils.validator import Auth0Wrapper
 
 import utils.db as db
 from models.PlayerCharacter import PlayerCharacter, PlayerCharacterList
+from models.User import User, UserList
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,6 +27,9 @@ def landing_page():
 
 api.add_resource(PlayerCharacterList, '/playerCharacters')
 api.add_resource(PlayerCharacter, '/playerCharacters/<string:player_character_id>')
+api.add_resource(UserList, '/users/')
+api.add_resource(User, '/users/<string:user_id>')
+
 
 # nuke all DB entries
 @app.route('/resetDB')

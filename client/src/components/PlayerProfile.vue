@@ -48,7 +48,9 @@ import { inject, reactive } from 'vue';
 
 // reactive state
 const state = reactive({
-  id: "62bdf12a887b966724d40244", // manually set after /resetDB
+  // manually set after /resetDB, loaded from .env file
+  id: import.meta.env['VITE_PLAYER_CHARACTER_ID'], 
+
   // placeholder data while page is loading
   character: {
     name: 'Placeholder name',
@@ -64,7 +66,6 @@ function getCharacter() {
   const path = '/playerCharacters/' + state.id;
   axios.get(path)
     .then(res => {
-      console.log(res.data);
       state.character = JSON.parse(res.data);
     })
     .catch(error => {

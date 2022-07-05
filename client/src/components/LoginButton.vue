@@ -15,9 +15,10 @@
 
 <script setup>
 import { useAuth0 } from '@auth0/auth0-vue';
-import { reactive, watch } from 'vue';
+import { reactive, watch, inject } from 'vue';
 
 const auth0 = useAuth0();
+const axios = inject('axios');
 
 const state = reactive({
   user: auth0.user,
@@ -27,8 +28,19 @@ const state = reactive({
 
 watch(() => state.isLoading, isLoading => {
   if (!isLoading && state.isAuthenticated) {
-    console.log(state.user.sub);
-    console.log(state.user.email);
+    const path = '/users/' + state.user.sub;
+    const user = {
+      auth0Id: state.user.sub,
+      email: state.user.email
+    }
+
+    axios.put(path, user)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 });
 
