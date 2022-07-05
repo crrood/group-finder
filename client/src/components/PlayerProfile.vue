@@ -66,7 +66,7 @@ function getCharacter() {
   const path = '/playerCharacters/' + state.id;
   axios.get(path)
     .then(res => {
-      state.character = JSON.parse(res.data);
+      state.character = res.data;
     })
     .catch(error => {
       console.error(error);
