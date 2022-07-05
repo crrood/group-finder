@@ -1,7 +1,6 @@
 import logging
 from flask import request
 from flask_restful import Resource
-from bson.objectid import ObjectId
 
 from utils.validator import Auth0Wrapper
 import utils.db as db
@@ -18,4 +17,7 @@ class User(Resource):
 
 class UserList(Resource):
   def get(self):
-    return db.query_collection('users')
+    args = request.args
+    page_number = args.get("page", default=0, type=int)
+    
+    return db.query_collection('users', page_number)

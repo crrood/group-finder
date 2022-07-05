@@ -22,4 +22,7 @@ class PlayerCharacter(Resource):
 
 class PlayerCharacterList(Resource):
   def get(self):
-    return db.query_collection('playerCharacters')
+    args = request.args
+    page_number = args.get("page", default=0, type=int)
+    
+    return db.query_collection('playerCharacters', page_number)

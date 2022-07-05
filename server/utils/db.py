@@ -3,45 +3,59 @@ import logging
 import os
 from pymongo import MongoClient
 from bson import json_util, ObjectId
+from flask import Response, make_response
 
 DATABASE = 'groupFinder'
 
 # connect to DB
-def get_client():
+def get_client() -> MongoClient:
   mongodb_username = os.environ.get('MONGO_INITDB_ROOT_USERNAME')
   mongodb_password = os.environ.get('MONGO_INITDB_ROOT_PASSWORD')
   mongodb_connstring = f'mongodb://{mongodb_username}:{mongodb_password}@mongodb'
   client = MongoClient(mongodb_connstring)
   return client
 
-def get_database():
+def get_database() -> MongoClient:
   client = get_client()
   return client[DATABASE]
 
-def get_collection(collection):
+def get_collection(collection: str) -> MongoClient:
   client = get_database()
   return client[collection]
 
-def query_collection(collection):
-  # TODO paginate
+def query_collection(collection: str, page_number: int) -> Response:
+  """Query n documents from a collection, offset by page_number
+  
+  Parameters:
+  collection (string): Name of the db collection
+  page_number (int): Offset to query from, 0-indexed
+
+  Returns:
+  (Response): Body is dict of format {id: item}
+  """
   client = get_collection(collection)
 
-  results = client.find()
+  items_per_page = 10
+  offset = page_number * items_per_page
+  results = client.find(limit=10, skip=offset)
+
   result_dict = {}
   for result in results:
+    logging.info(result)
     result_dict[str(result['_id'])] = json.loads(json_util.dumps(result))
+    logging.info(result_dict)
 
-  return result_dict, 200
+  return make_response(result_dict, 200)
 
-def get_document_by_id(collection, id):
+def get_document_by_id(collection: str, id: str) -> Response:
   """Query a document from the database using an _id value
   
   Parameters:
   collection (string): Name of the db collection
-  id (string): ObjectID of the document
+  id (string): ID of the document - must convert to an ObjectId
 
   Returns:
-  (string, int): JSON dump of document OR error string, HTTP result code
+  (Response): JSON dump of document OR error string
   """
   client = get_collection(collection)
   try:
@@ -61,9 +75,9 @@ def get_document_by_id(collection, id):
     response = f'id {id} not found in {collection}'
     result_code = 404
   
-  return response, result_code
+  return make_response(response, result_code)
 
-def upsert_document(collection, data, query=None):
+def upsert_document(collection: str, data: dict, query: dict = None) -> Response:
   """Upsert a document in the database
 
   Parameters:
@@ -72,7 +86,7 @@ def upsert_document(collection, data, query=None):
   query (mongoQuery, optional): Query to find document to replace
 
   Returns:
-  (string, int): Response message, HTTP result code
+  (Response): Status message
   """
   # mongo throws an error if incoming data attempts to update the immutable _id field
   logging.info(data)
@@ -93,9 +107,19 @@ def upsert_document(collection, data, query=None):
     response = f'inserted with id {result.inserted_id}'
     result_code = 200
   
-  return response, result_code
+  return make_response(response, result_code)
 
-def upsert_document_by_id(collection, data, id):
+def upsert_document_by_id(collection: str, data: dict, id: str) -> Response:
+  """Upsert a document in the database
+
+  Parameters:
+  collection (string): Name of the db collection
+  data (dict): JSON document to be upserted
+  id (string): ID of the document - must convert to an ObjectId
+
+  Returns:
+  (Response): Status message
+  """
   try:
     object_id = convert_to_oid(id)
   except:
@@ -105,7 +129,7 @@ def upsert_document_by_id(collection, data, id):
   
   return upsert_document(collection, data, {'_id': object_id})
 
-def reset():
+def reset() -> str:
   """Drop the DB and refill with test data"""
   client = get_client()
   client.drop_database(DATABASE)
