@@ -135,9 +135,10 @@ def reset() -> str:
   # populate testing data
   with open('utils/testData/playerCharacter.json') as f:
     sample_pc_data = json.load(f)
-
+  
   client = get_database()
-  result = client['playerCharacters'].insert_one(sample_pc_data)
+  for character in sample_pc_data:
+    result = client['playerCharacters'].insert_one(character)
 
   return f'db reset - test PC id = {result.inserted_id}'
 
