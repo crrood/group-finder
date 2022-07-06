@@ -45,25 +45,19 @@
 
 <script setup>
 import { inject, reactive } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 // reactive state
 const state = reactive({
-  // manually set after /resetDB, loaded from .env file
-  id: import.meta.env['VITE_PLAYER_CHARACTER_ID'], 
-
-  // placeholder data while page is loading
-  character: {
-    name: 'Placeholder name',
-    photo: {
-      fullsize: 'https://placekitten.com/250/384'
-    }
-  }
+  character: JSON.parse(route.params.playerCharacter)
 });
 
 // methods
 const axios = inject('axios');
 function getCharacter() {
-  const path = '/playerCharacters/' + state.id;
+  const path = '/playerCharacters/' + state.character._id.$oid;
   axios.get(path)
     .then(res => {
       state.character = res.data;
@@ -74,7 +68,9 @@ function getCharacter() {
 }
 
 function saveCharacter() {
-  const path = '/playerCharacters/' + state.id;
+  console.log(state.character);
+  console.log(state.character._id.$oid);
+  const path = '/playerCharacters/' + state.character._id.$oid;
   axios.put(path, state.character)
     .then(res => {
       console.log(res.data);

@@ -13,7 +13,10 @@ const routes = [
   {
     path: '/playerProfile',
     name: 'PlayerProfile',
-    component: PlayerProfile
+    component: PlayerProfile,
+    // props: route => ({
+    //   playerCharacter: route.params.playerCharacter
+    // })
   },
   {
     path: '/playerProfileList',
