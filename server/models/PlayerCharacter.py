@@ -1,5 +1,4 @@
 import logging
-from bson import json_util
 from flask import request
 from flask_restful import Resource
 
@@ -17,8 +16,7 @@ class PlayerCharacter(Resource):
   # NOTE authentication is disabled for testing
   # @auth.require_auth(None)
   def put(self, player_character_id):
-    return db.upsert_document_by_id('playerCharacters', request.get_json(), 
-      {'_id': player_character_id})
+    return db.upsert_document_by_id('playerCharacters', request.get_json(), player_character_id)
 
 class PlayerCharacterList(Resource):
   def get(self):
