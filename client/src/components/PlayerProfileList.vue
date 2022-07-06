@@ -10,7 +10,8 @@ import { reactive, inject } from 'vue';
 import PlayerProfileListEntry from './PlayerProfileListEntry.vue';
 
 const state = reactive({
-  playerCharacter: []
+  playerCharacter: [],
+  page_number: 0
 })
 
 const axios = inject('axios');
@@ -25,6 +26,6 @@ function getPlayerCharacterList(page_number) {
     })
 }
 
-getPlayerCharacterList(0);
+getPlayerCharacterList(state.page_number);
 
 </script>

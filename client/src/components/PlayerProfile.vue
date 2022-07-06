@@ -68,8 +68,6 @@ function getCharacter() {
 }
 
 function saveCharacter() {
-  console.log(state.character);
-  console.log(state.character._id.$oid);
   const path = '/playerCharacters/' + state.character._id.$oid;
   axios.put(path, state.character)
     .then(res => {
@@ -79,7 +77,5 @@ function saveCharacter() {
       console.error(error);
     })
 }
-
-// lifecycle hooks
 
 </script>
