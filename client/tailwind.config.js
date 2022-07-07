@@ -6,8 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'parchment': '#D6CCA9',
-        'parchment-light': '#EFE4BD'
+        'parchment': '#cf9e5e',
+        'parchment-dark': '#cb9043',
+        'primary': '#1E293B', // slate-800
+        'secondary': '#deb887',
+        'accent': '#6B21A8', // purple-800
+        'accent-dark': '#581C87',  // purple-900
       }
     },
   },

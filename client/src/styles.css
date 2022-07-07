@@ -8,21 +8,21 @@ a {
 }
 
 input[type='text'] {
-  @apply accent-parchment bg-transparent rounded border-0 border-b-2 border-black focus:border-gray-500;
+  @apply accent-parchment bg-transparent rounded border-0 border-b-2 border-primary focus:border-gray-500;
 }
 
 input[type='number'] {
-  @apply accent-parchment bg-transparent rounded;
+  @apply accent-parchment bg-transparent rounded border-b-2 border-b-primary;
 }
 
 textarea {
-  @apply accent-transparent;
+  @apply accent-parchment bg-parchment rounded-sm border-primary;
 }
 
 /* CUSTOM CLASSES */
 @layer components {
   .btn-primary {
-    @apply bg-purple-600 hover:bg-purple-700 px-4 py-3 rounded-full text-white font-rise-of-kingdom font-bold;
+    @apply bg-accent hover:bg-accent-dark px-4 py-3 rounded-full text-white font-rise-of-kingdom font-bold;
   }
 
   .btn-warning {

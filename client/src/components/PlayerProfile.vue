@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full h-full grid justify-center bg-parchment">
-    <div class="grid grid-cols-12 bg-parchment font-black-chancery max-w-5xl">
+  <div class="grid justify-center mt-4 bg-parchment">
+    <div class="grid grid-cols-12 gap-y-4 font-black-chancery max-w-5xl">
       <!-- Character Photo -->
       <div class="col-span-4 flex justify-center h-96">
         <img class="rounded-full max-w-full" :src='state.character.photo.fullsize'>
@@ -18,10 +18,10 @@
       </div>
       <!-- Stats -->
       <div class="col-span-12 flex justify-evenly gap-x-12">
-        <span v-for="(value, name) in state.character.stats" class="p-2 border border-black text-center">
-          <input type="number" class="oldstyle-nums font-bold text-xl text-center" max-length=2 size=2
+        <span v-for="(value, name) in state.character.stats" class="p-2 w-24 rounded-md border-2 border-black text-center">
+          <input type="number" class="w-full oldstyle-nums font-bold text-xl text-center" max-length=2 size=2
             v-model="state.character.stats[name]">
-          <hr>
+          <hr class="invisible">
           <label class="font-semibold capitalize">{{ name }}</label>
         </span>
       </div>

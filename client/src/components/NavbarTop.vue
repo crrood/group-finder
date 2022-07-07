@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex gap-4 p-2 bg-slate-600 font-rise-of-kingdom text-white" role="navigation"
+  <nav class="flex gap-4 p-2 bg-primary font-rise-of-kingdom text-white" role="navigation"
     aria-label="main navigation">
     <div class="">
       <router-link class="" to="/">
