@@ -9,7 +9,7 @@ auth = Auth0Wrapper()
 
 class User(Resource):
   def get(self, user_id):
-    return db.get_document_by_id('users', user_id)
+    return db.query_document_by_id('users', user_id)
 
   def put(self, user_id):
     data = request.get_json()

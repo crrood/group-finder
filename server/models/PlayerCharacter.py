@@ -11,7 +11,7 @@ class PlayerCharacter(Resource):
   # NOTE authentication is disabled for testing
   # @auth.require_auth(None)
   def get(self, player_character_id):
-    return db.get_document_by_id('playerCharacters', player_character_id)
+    return db.query_document_by_id('playerCharacters', player_character_id)
   
   # NOTE authentication is disabled for testing
   # @auth.require_auth(None)

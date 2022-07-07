@@ -12,6 +12,7 @@ from models.PlayerCharacter import PlayerCharacter, PlayerCharacterList
 from models.User import User, UserList
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
 api = Api(app)
 auth = Auth0Wrapper()
 

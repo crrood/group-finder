@@ -1,8 +1,9 @@
 import json
 import logging
 import os
+from collections import OrderedDict
 from pymongo import MongoClient
-from bson import json_util, ObjectId
+from bson import json_util, ObjectId, SON
 from flask import Response, jsonify, make_response
 
 DATABASE = 'groupFinder'
@@ -45,7 +46,7 @@ def query_collection(collection: str, page_number: int) -> Response:
 
   return make_response(jsonify(result_array), 200)
 
-def get_document_by_id(collection: str, id: str) -> Response:
+def query_document_by_id(collection: str, id: str) -> Response:
   """Query a document from the database using an _id value
   
   Parameters:
@@ -66,8 +67,7 @@ def get_document_by_id(collection: str, id: str) -> Response:
   data = client.find_one({'_id': object_id})
 
   if data != None:
-    logging.info(json_util.dumps(data))
-    response = json_util.dumps(data)
+    response = json.loads(json_util.dumps(data))
     result_code = 200
   else:
     response = f'id {id} not found in {collection}'
