@@ -1,8 +1,10 @@
 <template>
-  <PlayerProfileListEntry 
-    v-for="playerCharacter in state.playerCharacter" 
-    :key="playerCharacter._id.$oid"
-    :playerCharacter="playerCharacter" />
+  <div class="bg-parchment">
+    <PlayerProfileListEntry 
+      v-for="playerCharacter in state.playerCharacters" 
+      :key="playerCharacter._id.$oid"
+      :playerCharacter="playerCharacter" />
+  </div>
 </template>
 
 <script setup>
@@ -10,7 +12,7 @@ import { reactive, inject } from 'vue';
 import PlayerProfileListEntry from './PlayerProfileListEntry.vue';
 
 const state = reactive({
-  playerCharacter: [],
+  playerCharacters: [],
   page_number: 0
 })
 
@@ -19,7 +21,7 @@ function getPlayerCharacterList(page_number) {
   const path = '/playerCharacters?page=' + page_number
   axios.get(path)
     .then(res => {
-      state.playerCharacter = res.data;
+      state.playerCharacters = res.data;
     })
     .catch(error => {
       console.error(error);

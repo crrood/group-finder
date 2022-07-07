@@ -2,7 +2,7 @@
     "photo": {
       "id": 0,
       "fullsize": "https://i.pinimg.com/originals/7b/f4/ae/7bf4ae7ccd11422ccb2a8b4017198b65.png",
-      "thumbnail": "https://placekitten.com/100/100"
+      "thumbnail": "https://placekitten.com/200/200"
     },
     "answers": [{
       "id": 0,
@@ -44,7 +44,7 @@
   {
     "photo": {
       "id": 0,
-      "fullsize": "https://2e.aonprd.com/Images/Ancestries/Halfling01.png",
+      "fullsize": "https://i.pinimg.com/originals/8e/18/5f/8e185fa1bc955fa9f1a7bdd6466d675d.png",
       "thumbnail": "https://placekitten.com/150/150"
     },
     "answers": [{
@@ -54,34 +54,34 @@
       "question": {}
     }],
     "details": {
-      "race": "Halfing",
-      "class": "Warlock",
-      "background": "Farmer",
-      "age": "43",
-      "level": 7,
-      "gender": "Male",
-      "height": "3ft 7in",
-      "weight": "8 stone"
+      "race": "Dark Elf",
+      "class": "Rogue",
+      "background": "Criminal",
+      "age": "23",
+      "level": 4,
+      "gender": "Female",
+      "height": "5ft 7in",
+      "weight": "None of your business"
     },
     "stats": {
-      "strength": 12,
-      "dexterity": 8,
-      "constitution": 13,
-      "intelligence": 10,
-      "wisdom": 15,
-      "charisma": 14
+      "strength": 8,
+      "dexterity": 15,
+      "constitution": 14,
+      "intelligence": 13,
+      "wisdom": 12,
+      "charisma": 10
     },
     "personality": {
-      "ideals": "A simple life is best",
-      "bonds": "His land and family",
-      "flaws": "Ignorant to the ways of the world",
-      "likes": "Carrots, onions, eternal darkness",
-      "dislikes": "Poorly tilled soil",
-      "catchphrase": "Well ain't that a turnip and a half!"
+      "ideals": "Do whatever it takes",
+      "bonds": "To the one who killed my father",
+      "flaws": "I'm a little too nice",
+      "likes": "Being a thief",
+      "dislikes": "People who get in her way",
+      "catchphrase": "Get out of my way!"
     },
-    "name": "Stumper Strongsottom",
-    "allies": "His fellow townspeople",
-    "enemies": "Gophers",
-    "religion": "The eternal dark one"
+    "name": "Olivia Mudshoulders",
+    "allies": "The people of the city",
+    "enemies": "Town guards",
+    "religion": "Pragmatism"
   }
 ]

@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'parchment': '#D6CCA9'
+        'parchment': '#D6CCA9',
+        'parchment-light': '#EFE4BD'
       }
     },
   },
