@@ -1,4 +1,6 @@
-[{
+[
+  {
+    "auth0Id": "auth0|6298e8b9e0ba2f006f6d68ba",
     "photo": {
       "id": 0,
       "fullsize": "https://i.pinimg.com/originals/7b/f4/ae/7bf4ae7ccd11422ccb2a8b4017198b65.png",
@@ -42,6 +44,7 @@
     "religion": "The eternal dark one"
   },
   {
+    "auth0Id": "0",
     "photo": {
       "id": 0,
       "fullsize": "https://i.pinimg.com/originals/8e/18/5f/8e185fa1bc955fa9f1a7bdd6466d675d.png",
