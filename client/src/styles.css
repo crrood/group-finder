@@ -12,7 +12,7 @@ input[type='text'] {
 }
 
 input[type='number'] {
-  @apply accent-parchment bg-transparent rounded border-b-2 border-b-primary;
+  @apply accent-parchment bg-transparent rounded border-b-2 border-b-primary focus:border-gray-500;
 }
 
 textarea {

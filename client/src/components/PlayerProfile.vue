@@ -51,13 +51,26 @@ const route = useRoute();
 
 // reactive state
 const state = reactive({
-  character: JSON.parse(route.params.playerCharacter)
+  character: {
+    photo: {
+      thumbnail: '',
+      fullsize: ''
+    }
+  }
 });
 
-// methods
+// initialize
 const axios = inject('axios');
-function getCharacter() {
-  const path = '/playerCharacters/' + state.character._id.$oid;
+if (route.params.playerCharacter) {
+  state.character = JSON.parse(route.params.playerCharacter);
+}
+else {
+  getCharacter(route.params.id);
+}
+
+// methods
+function getCharacter(characterId) {
+  const path = '/playerCharacters/' + characterId;
   axios.get(path)
     .then(res => {
       state.character = res.data;

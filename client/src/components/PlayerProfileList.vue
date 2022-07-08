@@ -4,6 +4,7 @@
       :playerCharacter="playerCharacter" />
   </div>
   <!-- Previous / next page buttons -->
+  <!-- Icons from https://www.streamlinehq.com/icons/streamline-flat-free -->
   <div class="flex grow justify-center gap-4">
     <button @click="state.pageNumber = 0">
       <img src="../assets/icons/arrow-first.svg" class="">

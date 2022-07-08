@@ -11,12 +11,9 @@ const routes = [
     component: LandingPage
   },
   {
-    path: '/playerProfile',
+    path: '/playerProfile/:id',
     name: 'PlayerProfile',
-    component: PlayerProfile,
-    // props: route => ({
-    //   playerCharacter: route.params.playerCharacter
-    // })
+    component: PlayerProfile
   },
   {
     path: '/playerProfileList',
