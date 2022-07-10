@@ -6,21 +6,22 @@
         <img class="rounded-full max-w-full" :src='state.character.photo.fullsize'>
       </div>
       <div class="col-span-8 grid grid-cols-12 grid-rows-6">
-        <p class="col-span-12 row-span-2 font-beyond-wonderland text-center text-7xl">{{
-          state.character.name}}</p>
+        <input type="text" class="col-span-12 row-span-2 font-beyond-wonderland text-center text-7xl" v-model="
+          state.character.name" disabled>
         <!-- Physical Details -->
         <div class="col-span-12 row-span-4 flex flex-wrap gap-x-12 justify-evenly p-5">
           <span v-for="(value, name) in state.character.details" :key="name">
             <label class="capitalize">{{ name }}: </label>
-            <input type="text" class="text-center" size=15 v-model="state.character.details[name]">
+            <input type="text" class="text-center" size=15 v-model="state.character.details[name]" disabled>
           </span>
         </div>
       </div>
       <!-- Stats -->
       <div class="col-span-12 flex justify-evenly gap-x-12">
-        <span v-for="(value, name) in state.character.stats" class="p-2 w-24 rounded-md border-2 border-black text-center">
+        <span v-for="(value, name) in state.character.stats"
+          class="p-2 w-24 rounded-md border-2 border-black text-center">
           <input type="number" class="w-full oldstyle-nums font-bold text-xl text-center" max-length=2 size=2
-            v-model="state.character.stats[name]">
+            v-model="state.character.stats[name]" disabled>
           <hr class="invisible">
           <label class="font-semibold capitalize">{{ name }}</label>
         </span>
@@ -30,7 +31,7 @@
         <span v-for="(value, name) in state.character.personality" class="col-span-4 grid grid-cols-1">
           <label class="capitalize">{{ name }}: </label>
           <textarea class="resize-none border p-1 text-left focus:border-black focus:ring-0"
-            v-model="state.character.personality[name]"></textarea>
+            v-model="state.character.personality[name]" disabled></textarea>
         </span>
       </div>
     </div>
@@ -38,7 +39,7 @@
     <!-- Edit / save -->
     <div class="flex justify-center py-2 gap-x-4">
       <button v-if="characterOwnedByUser" class='btn-primary w-24' @click='editBtnClicked'>
-          {{ state.editing ? 'Save' : 'Edit' }}
+        {{ state.editing ? 'Save' : 'Edit' }}
       </button>
     </div>
   </div>
@@ -93,7 +94,19 @@ function editBtnClicked() {
   if (state.editing) {
     saveCharacter();
   }
+  toggleInputs();
   state.editing = !state.editing;
+}
+
+function toggleInputs() {
+  const inputs = document.querySelectorAll('input');
+  inputs.forEach(input => {
+    input.disabled = !input.disabled;
+  });
+  const textareas = document.querySelectorAll('textarea');
+  textareas.forEach(textarea => {
+    textarea.disabled = !textarea.disabled;
+  });
 }
 
 function saveCharacter() {
