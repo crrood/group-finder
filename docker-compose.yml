@@ -12,6 +12,7 @@ services:
     stop_signal: SIGINT
     depends_on:
       - mongodb
+      - caddy
     networks:
       - internal
 
